@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17051f">
+<title>Diwali — A Festival of Light</title>
+<style>
+:root{--gold:#ffd36a;--orange:#ff7a22;--pink:#ff4f9a;--night:#17051f;--cream:#fff2cf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--cream);font-family:Georgia,'Times New Roman',serif;overflow:hidden}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.scene{position:relative;z-index:1;min-height:100svh;display:none;align-items:center;justify-content:center;text-align:center;padding:28px 18px;overflow:hidden}
+.scene.active{display:flex;animation:sceneIn 1s both}
+@keyframes sceneIn{from{opacity:0;transform:scale(1.06) translateY(20px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.content{width:min(900px,100%);position:relative;z-index:2}
+.eyebrow{letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font:600 11px Arial,sans-serif}
+h1{font-size:clamp(42px,9vw,100px);line-height:.98;margin:18px 0;color:#ffe7a1;text-shadow:0 0 18px #ff9c2d,0 0 55px #ff4b00;animation:glow 3s ease-in-out infinite alternate}
+h2{font-size:clamp(34px,6vw,66px);margin:12px 0;color:#ffe5a0;text-shadow:0 0 25px #ff9c2d}
+p{font:17px/1.7 Arial,sans-serif;color:#f9dfc4;max-width:650px;margin:16px auto}
+@keyframes glow{to{text-shadow:0 0 25px #ffd36a,0 0 75px #ff6a00,0 0 110px #ff2e63}}
+.btn{border:1px solid #ffcf71;background:linear-gradient(135deg,#ffb52e,#ff6b24 55%,#d52c64);color:#310b21;padding:15px 27px;border-radius:999px;font:700 14px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 25px #ff8b2b80, inset 0 1px #fff8;transition:.25s}
+.btn:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 0 40px #ffb52e}
+.btn:active{transform:scale(.97)}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.progress{position:fixed;z-index:5;top:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:#ffffff35;transition:.4s}.dot.on{background:var(--gold);box-shadow:0 0 12px var(--gold);transform:scale(1.45)}
+.diya-wrap{height:260px;display:grid;place-items:center;perspective:700px}
+.diya{position:relative;width:180px;height:95px;border-radius:0 0 100px 100px/0 0 80px 80px;background:linear-gradient(#ffcf68,#d94b19 75%);box-shadow:0 18px 35px #ff6a1c55,inset 0 10px 15px #fff7;transform:rotateX(12deg);animation:float 3s ease-in-out infinite}
+.diya:before{content:"";position:absolute;left:0;right:0;top:-12px;height:25px;border-radius:50%;background:linear-gradient(#fff0b3,#f68b30);border:2px solid #ffdf8b}
+.flame{position:absolute;width:36px;height:65px;left:72px;top:-75px;background:radial-gradient(ellipse at 50% 75%,#fffbd0 0 14%,#ffe25a 28%,#ff8a20 60%,#ff3c18 78%,transparent 80%);border-radius:80% 10% 70% 50%;transform:rotate(4deg);filter:drop-shadow(0 0 18px #ff9a21);animation:flicker .16s infinite alternate}
+@keyframes flicker{to{transform:rotate(-5deg) scale(.92,1.08)}}
+@keyframes float{50%{transform:translateY(-12px) rotateX(12deg)}}
+.lotus{font-size:76px;filter:drop-shadow(0 0 20px #ff6b9b);animation:float 4s infinite}
+.cards{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:28px auto}
+.card{width:150px;padding:18px 12px;border:1px solid #ffcf7155;border-radius:20px;background:linear-gradient(145deg,#ffffff12,#ff8b2b12);backdrop-filter:blur(8px);box-shadow:0 12px 30px #0004;transform:rotateY(-8deg);animation:cardFloat 4s ease-in-out infinite}
+.card:nth-child(2){animation-delay:.5s;transform:rotateY(8deg)}.card:nth-child(3){animation-delay:1s}
+.card b{display:block;font:13px Arial,sans-serif;color:var(--gold);margin-top:9px}
+.card span{font-size:35px}
+@keyframes cardFloat{50%{translate:0 -12px;rotate:2deg}}
+.rangoli{width:210px;height:210px;margin:22px auto;border-radius:50%;border:3px solid #ffcb58;box-shadow:0 0 0 10px #ff4c9a22,0 0 0 20px #ffcb5822,0 0 45px #ff9c2d66;display:grid;place-items:center;animation:spin 22s linear infinite}
+.rangoli div{width:145px;height:145px;border:3px dashed #ff7f92;border-radius:50%;display:grid;place-items:center;font-size:68px;animation:spin 14s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.final-title{font-size:clamp(48px,11vw,118px);background:linear-gradient(90deg,#fff1a7,#ffb22f,#ff72a9,#fff1a7);background-size:250%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3s linear infinite}
+@keyframes shine{to{background-position:250% center}}
+.small{font:12px Arial,sans-serif;color:#f5cfa8aa;margin-top:22px}
+.corner{position:fixed;z-index:4;bottom:14px;left:0;right:0;text-align:center;font:10px Arial,sans-serif;letter-spacing:.16em;color:#ffdda766}
+@media(max-width:500px){.card{width:29%;padding:14px 6px}.card span{font-size:28px}.card b{font-size:10px}.diya-wrap{height:220px}}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="progress" id="progress"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+
+<section class="scene active">
+ <div class="content">
+  <div class="eyebrow">A little surprise awaits</div>
+  <div class="diya-wrap"><div class="diya"><div class="flame"></div></div></div>
+  <h1>Let the Light<br>Find You</h1>
+  <p>A little journey of lights, colours, joy and togetherness is about to begin…</p>
+  <button class="btn" onclick="next()">Light the first diya ✨</button>
+ </div>
+</section>
+
+<section class="scene">
+ <div class="content">
+  <div class="eyebrow">Step 02 · The glow of hope</div>
+  <div class="lotus">🪷</div>
+  <h2>May your world<br>shine brighter</h2>
+  <p>May every diya bring a little hope, every smile bring warmth, and every new beginning bring beautiful possibilities.</p>
+  <div class="actions"><button class="btn" onclick="next()">Let the light spread →</button></div>
+ </div>
+</section>
+
+<section class="scene">
+ <div class="content">
+  <div class="eyebrow">Step 03 · Little things, big happiness</div>
+  <h2>Celebrate the joy</h2>
+  <div class="cards">
+   <div class="card"><span>🪔</span><b>LIGHT</b></div>
+   <div class="card"><span>🎨</span><b>COLOURS</b></div>
+   <div class="card"><span>🍬</span><b>SWEETS</b></div>
+  </div>
+  <p>Fill your home with laughter, your heart with gratitude, and your days with moments worth remembering.</p>
+  <div class="actions"><button class="btn" onclick="next()">Make a wish ✨</button></div>
+ </div>
+</section>
+
+<section class="scene">
+ <div class="content">
+  <div class="eyebrow">Step 04 · Your wish is in the stars</div>
+  <div class="rangoli"><div>✨</div></div>
+  <h2>Close your eyes.<br>Wish with your heart.</h2>
+  <p>May peace stay close, happiness find its way to you, and success light up the path ahead.</p>
+  <div class="actions"><button class="btn" onclick="next()">Reveal the celebration 🎆</button></div>
+ </div>
+</section>
+
+<section class="scene" id="final">
+ <div class="content">
+  <div class="eyebrow">From the heart, with light</div>
+  <div style="font-size:54px;animation:float 2s infinite">🪔 ✨ 🪔</div>
+  <h1 class="final-title">HAPPY<br>DIWALI!</h1>
+  <p>May your life sparkle with joy, your home glow with love, and the year ahead be filled with countless reasons to smile.</p>
+  <div class="actions">
+   <button class="btn" onclick="celebrate()">More fireworks! 🎇</button>
+   <button class="btn" onclick="restart()">Replay the magic ↻</button>
+  </div>
+  <div class="small">WISHING YOU AND YOUR FAMILY A BEAUTIFUL DIWALI</div>
+ </div>
+</section>
+<div class="corner">A FESTIVAL OF LIGHT · JOY · NEW BEGINNINGS</div>
+<script>
+const scenes=[...document.querySelectorAll('.scene')],dots=[...document.querySelectorAll('.dot')];let step=0;
+function show(n){step=n;scenes.forEach((s,i)=>s.classList.toggle('active',i===n));dots.forEach((d,i)=>d.classList.toggle('on',i===n));if(n===4)celebrate();}
+function next(){if(step<scenes.length-1)show(step+1)}
+function restart(){show(0)}
+// Canvas fireworks: decorative animation only.
+const canvas=document.getElementById('sky'),ctx=canvas.getContext('2d');let W,H,particles=[],rockets=[];
+function resize(){W=canvas.width=innerWidth*devicePixelRatio;H=canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);W=innerWidth;H=innerHeight}
+addEventListener('resize',resize);resize();
+const colors=['#ffd36a','#ff6a35','#ff4f9a','#9d8cff','#8fffe0','#fff2cf'];
+function burst(x,y,count=75){let hue=colors[Math.floor(Math.random()*colors.length)];for(let i=0;i<count;i++){let a=Math.PI*2*i/count+Math.random()*.08,s=1.2+Math.random()*4.2;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:55+Math.random()*35,max:90,color:hue,size:1+Math.random()*2.3})}}
+function launch(){let x=70+Math.random()*(W-140),y=80+Math.random()*H*.42;rockets.push({x,y,life:18});setTimeout(()=>burst(x,y,65+Math.random()*45),180)}
+let last=0;
+function animate(t){ctx.clearRect(0,0,W,H);
+ // subtle stars
+ for(let i=0;i<38;i++){let x=(i*173)%W,y=(i*97+Math.sin(t/900+i)*9)%H;ctx.fillStyle='rgba(255,220,160,.28)';ctx.fillRect(x,y,1.4,1.4)}
+ particles=particles.filter(p=>p.life>0);for(let p of particles){p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.vx*=.986;p.vy*=.986;p.life--;ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;
+ if(t-last>950){if(step===4||Math.random()>.42)launch();last=t}
+ requestAnimationFrame(animate)}
+requestAnimationFrame(animate);
+function celebrate(){for(let i=0;i<5;i++)setTimeout(launch,i*260)}
+</script>
+</body>
+</html>
